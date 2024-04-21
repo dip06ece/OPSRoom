@@ -36,6 +36,7 @@ class ReadGitHub:                                  # Define a class
         for item in data_json:                      # For every item in Json Data
             if (item["base"]["ref"] ==REPO_BRANCH):      # If the base branch is $REPO_BRANCH only
                 all_pull_request.append(item["id"])     # Append pull id to list
+            all_pull_request.append(item["base"]["sha"])     # Append pull id to list
 
         return all_pull_request                     # Return the pull_id list
 
