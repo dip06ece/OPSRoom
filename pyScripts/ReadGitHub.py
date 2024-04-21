@@ -34,7 +34,7 @@ class ReadGitHub:                                  # Define a class
 
         all_pull_request = []                       # Taking an empty list
         for item in data_json:                      # For every item in Json Data
-            all_pull_request.append(item["id"])     # Append pull id to list
+            all_pull_request.append(item["base"]["sha"])     # Append pull id to list
 
         return all_pull_request                     # Return the pull_id list
 
