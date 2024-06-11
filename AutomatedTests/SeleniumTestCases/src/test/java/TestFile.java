@@ -1,3 +1,4 @@
+import io.qameta.allure.testng.AllureTestNg;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -7,9 +8,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+@Listeners(AllureTestNg.class)
 public class TestFile {
+    private static final Logger LOGGER = Logger.getLogger(TestFile.class.getName());
+
     @Test
     public void TestWithFF() throws InterruptedException {
         // Configure Firefox options for headless mode
@@ -47,5 +57,22 @@ public class TestFile {
         searchBar.sendKeys(Keys.ENTER);
         TimeUnit.SECONDS.sleep(5);
         driver.close();
+    }
+    @AfterTest
+    public void testTearDown(){
+//        LOGGER.setLevel(Level.INFO);
+//        ConsoleHandler consoleHandler = new ConsoleHandler();
+//        consoleHandler.setLevel(Level.INFO);
+//        LOGGER.addHandler(consoleHandler);
+//        System.out.println("One Test Case is executed!...............");
+
+    }
+    @BeforeTest
+    public void testSetup(){
+        LOGGER.setLevel(Level.INFO);
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.INFO);
+        LOGGER.addHandler(consoleHandler);
+        System.out.println("One Test Case execution started!...............");
     }
 }

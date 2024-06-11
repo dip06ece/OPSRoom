@@ -120,5 +120,296 @@ thislist = ["banana", "cherry", "apple", 34]    # can contain different types of
 print(thislist[-1])                             # Negative index means start from end thislist[-1]
 print(thislist[1:3])                            # Returns a sub list thislist[:3]   thislist[1:]
 print(len(thislist))
+print(thislist)
 if "cherry" in thislist:
     print("cherry found")
+thislist[1:3] = ["Apple","Cherry"]              # Change a range of values in a list
+                                                # Can be used to insert a list in another list
+thislist[0:3] = ["Cherry"]                      # Can truncate list too
+print(thislist)
+thislist.insert(1, "watermelon")# Insert an item to the specified index
+print(thislist)
+thislist.append("Mango")                         # Adds an item at the end
+print(thislist)
+thislist.extend(["cow", "horse"])               # Add another list at the end of a list
+print(thislist)
+thislist.extend(("elephant", "rabbit"))         # Add another tuple/set/dictionaries at the end of a list
+print(thislist)
+thislist.remove("elephant")                     # Remove an item from list. If multiple remove first
+print(thislist)
+thislist.pop(-1)                                # Remove item at specified index
+print(thislist)
+thislist.pop()                                  # Pop the last element
+print(thislist)
+del(thislist[4])                                # Delete last element of list
+print(thislist)
+# del(thislist)                                 # Delete the list # thislist undefined from here
+thislist.clear()                                # Remove all items from thislist
+print(thislist)
+
+## List iteration
+thislist = ['Cherry', 'watermelon', 34, 'Mango']
+for x in thislist:                              # Loop through list
+    print(x)
+for x in range(len(thislist)):                  # Loop using index number
+    print(thislist[x])
+i = 0
+while i<len(thislist):                          # Print using while loop
+    print("while " + str(thislist[i]))
+    i+=1
+# List comprehension *** Need to study more
+[print(x) for x in thislist]                    ## Looping Using List Comprehension
+# newlist = [expression for item in iterable if condition == True]
+# newlist = [x for x in thislist if "a" in x]
+# newlist = [x for x in thislist if x != "apple"]
+#newlist = [x for x in thislist]
+newlist = [x for x in range(10)]              # Can use range function to create an iterable
+print(newlist)
+newlist = [x for x in range(10) if x<5]       # Can use range function and condition to create an iterable
+print(newlist)
+print(thislist)
+newlist = [str(x).upper() for x in thislist]  # Another example
+print(newlist)
+# newlist = [x if x != "banana" else "orange" for x in fruits] # expression with a condition
+del(thislist[2])
+thislist.sort()                                # for string list sort alpha numerically
+print(thislist)
+thislist.sort(reverse=True)                    # Sort in reverse order
+print(thislist)
+## We can customize sort function
+def myfunc(n):                                 # Custom sort function taking a key
+    return abs(n - 50)                         # Return a key based on logic
+thislist = [100, 50, 65, 82, 23]
+thislist.sort(key = myfunc)                    # Send the fuction as sort key
+print(thislist)
+## Case sensitive sort
+thislist = ["banana", "Orange", "Kiwi", "cherry"]
+thislist.sort()
+print(thislist)
+# Case insensitive sort
+thislist.sort(key = str.lower)                  # Change the sorting key to lower case
+print(thislist)
+thislist.reverse()                              # Just reverse a list
+print(thislist)
+
+## List copy
+newlist = thislist                              # both list same
+newList2 = thislist.copy()                      # new list is different
+mewList3 = list(thislist)                       # Another way to copy a List
+print(newList2)
+
+## Jon two lists
+list1 = ["a", "b", "c"]
+list2 = [1, 2, 3]
+list3 = list1 + list2                           # Simply add two lists
+for x in list2:                                 # Use for loop and append all elements
+    list1.append(x)
+list1.extend(list2)                             # Use extend to add list2
+
+## Tuple (ordered, allow duplicates and unchangeable)
+thistuple = ("apple", "banana", "cherry")
+thistuple = tuple(("apple", "banana", "cherry"))
+print(len(thistuple))
+print(thistuple)
+print(thistuple[-1])
+print(thistuple[1:2])
+print(thistuple[:2])
+if "apple" in thistuple:
+    print ("Apple found")
+# To modify tuple -> Create list from tuple -> modify list -> create and assign tuple from list
+thistuple = thistuple + ("Orange",)      #Tuple have comma
+print(thistuple)
+# To delete tuple -> Create list from tuple -> modify list -> create and assign tuple from list
+del thistuple                              # Delete this tuple completely
+thistuple = ("apple", "banana", "cherry")  # Packing tuple
+(x,*y) = thistuple                         # Unpacking Tuple# use asterisk to collect other values
+print(x)
+print(y)
+# Loop through tuple in same way as list
+tuple1 = ("a", "b" , "c")
+tuple2 = (1, 2, 3)
+tuple3 = tuple1 + tuple2                    # Join Tuple
+tuple2 = tuple1 * 2                         # Multiply Tuple
+print (tuple2)
+print(tuple2.count("a"))                    # Count method
+print(tuple2.index("b"))                    # index method
+
+# Sets
+# Unordered, Unchanged, Unindexed
+thisset = {"apple", "banana", "cherry", "apple"}
+thisset = {"apple", "banana", "cherry", True, 1, 2}     # True and 1 are same
+thisset = {"apple", "banana", "cherry", False, True, 0} # Falso and 0 are same
+print(thisset)
+print(len(thisset))
+print(type(thisset))
+thisset = set(("apple", "banana", "cherry", "apple"))
+for x in thisset:
+    print(x)
+thisset.add("orange")
+thisset2= set(("Pineapple",))
+thisset.update(thisset2)                        # Add items from another set to current set
+thisset.update(thislist)                        # Can add a list as well
+thisset.remove("apple")                         # Delete item that exist otherwise error
+thisset.discard("banana")                       # Delete item does not exist - no error
+x = thisset.pop()                               # Remove a random item
+thisset.clear()                                 # Empties the set
+#del thisset                                     # Deleted the set
+# union() update() joins two sets
+# intersection()  keeps only duplicates
+# difference() keeps items of fist excluding 2nd
+# symmetric_difference() all items EXCEPT the duplicates
+set1 = {"a", "b", "c", 1}
+set2 = {1, 2, 3}
+set3 = set1.union(set2)                          # union
+set3 = set1 | set2                               # union
+set3 = set1.union(set2,thisset2)             # can give a comma seperated lists or set1 | set2 | set3 etc.
+# set1.update(set2)                              # same as union
+set3 = set1.intersection(set2)                   # Intersection
+set3 = set1 & set2                               # intersection
+set3 = set1.difference(set2)                     # Difference
+set3 = set2 - set1                              # Difference
+set1.difference_update(set2)                     # Difference update returns the same set excluding common items
+set1 = {"a", "b", "c", 1}
+set2 = {1, 2, 3}
+set3 = set1.symmetric_difference(set2)           # Symmetric difference (discards the common items and keeps both)
+set3  = set1 ^ set2
+set1.symmetric_difference_update(set2)           # same but result is in set1
+print(set1)
+# List: Ordered, changeable, duplicate
+# Tuple: Ordered, unchangeable, duplicate
+# Set: unordered, unchangeabe, not indexed, no duplicate
+#Dictionaries: Ordered, changable, no duplicate
+thisdict = {                                    # Define Dictionary
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964,
+    "engine": ["oil","electric"]         # Can have other data types
+}
+thisdict2 = dict(name="john", age = 36, country = "Norway")
+thisdict["color"] = ["red", "purple", "blue"]   # Can add more items
+print(thisdict2)
+print(thisdict["color"])                        # Access Dictionary items
+print(thisdict.get("color"))                    # Same effect
+print(len(thisdict))                            # Length of Dictionary
+print(thisdict.keys())                         # Print dictionary keys # Adding more key will automatically add it
+print(thisdict.values())                       # Print dictionary values # Changing thisdict.values() will change values
+print(thisdict.items())                        # Returns a list view of items
+if "model" in thisdict:                        # Check if a key exists
+    thisdict["year"] =2010                     # Change dictionary values
+    thisdict.update({"year": 2020})             # Same effect
+    print(thisdict["year"])
+    print("model found")
+# remove an item
+thisdict.pop("model")
+print(thisdict)
+# remove last item
+thisdict.popitem()
+print(thisdict)
+#remove specified item
+del thisdict["brand"]
+print(thisdict)
+# Clear dictionary
+thisdict.clear()
+print(thisdict)
+# Delete Dictionary
+del thisdict
+# While looping through the dictionary return values are the keys
+for x in thisdict2:                 # Can loop through thisdict.values() or thisdict.keys()
+    print(thisdict2[x])
+# loop through both key values using items
+for x, y in thisdict2.items():
+    print(x, y)
+# Copy a dictionary
+thisdict = dict(thisdict2)
+thisdict = thisdict2.copy()
+
+# Dictionary of dictionaries
+child1 = {
+    "name" : "Emil",
+    "year" : 2004
+}
+child2 = {
+    "name" : "Tobias",
+    "year" : 2007
+}
+child3 = {
+    "name" : "Linus",
+    "year" : 2011
+}
+
+myfamily = {
+    "child1" : child1,
+    "child2" : child2,
+    "child3" : child3
+}
+
+print(myfamily["child1"]["name"])
+
+# Loop through nested dictionaries
+for x, obj in myfamily.items():
+    print(x)
+    for y in obj:
+        print(y + ':', obj[y])
+# If condition:
+if 2>3:
+    print("2>3")
+elif 2==3:
+    print("2 is equal to 3")
+else:
+    print("2 less than 3")
+# shorthand if else
+if 2>3: print(3)
+print(2) if 2>3 else print(3)
+print(2) if 2 > 3 else print("=") if 2 == 3 else print("3")
+# and or not
+if 2>3 and 2!=3: print(3)
+if not 2>3:
+    print(3)
+if 2>3:
+    pass                            # Leave the if statement empty
+
+# While loop
+i = 1
+while i < 6:
+    print(i)
+    i+=1
+    #if i ==3:               # Break conditions
+    #    break
+else:                        # Do something when loop condition is false
+    print("loop complete")
+
+# For loop
+for x in range(1,7,2):       # start, end, increment
+    if x==2:
+    #    break
+        continue  #Skip loop for this condition
+    print (x)
+else:
+    print("loop done!")
+
+# Functions
+def my_function(arg):                  # Pass a list of arguments
+    # def my_function(arg, /) will not allow argument as arg = 5
+    #
+    print(arg)
+my_function(5)
+my_function(arg = 55)
+def my_function2(*arg):                 # Pass a list of arguments
+    print(arg)
+my_function2(5,5,6,6,7,8,9)
+
+def my_function3(**args):               #Pass a dictionary of arguments
+    print(args["fname"])
+my_function3(fname="Dip", lname="Das")
+
+def my_country(country = "Bangladesh"): # Supply a default parameter value
+    print(country)
+    return 0
+my_country()
+my_country("USA")
+
+# Positional and keyword argument
+def my_function(a, b, /, *, c, d):
+    print(a + b + c + d)
+
+my_function(5, 6, c = 7, d = 8)
